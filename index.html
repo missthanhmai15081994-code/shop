@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shop Online</title>
+
+<style>
+body{
+    background:#000;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+}
+
+.container{
+    width:350px;
+    margin:50px auto;
+    border:1px solid white;
+    padding:20px;
+    border-radius:10px;
+}
+
+input{
+    width:90%;
+    padding:10px;
+    margin:8px;
+    background:#111;
+    color:white;
+    border:1px solid #555;
+}
+
+button{
+    width:95%;
+    padding:10px;
+    background:#00aa00;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>ĐẶT HÀNG</h1>
+
+<input id="name" placeholder="Tên">
+
+<input id="product" placeholder="Sản phẩm">
+
+<input id="quantity" type="number" placeholder="Số lượng">
+
+<button onclick="sendOrder()">Đặt Hàng</button>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+async function sendOrder(){
+
+    const data = {
+        name: document.getElementById("name").value,
+        product: document.getElementById("product").value,
+        quantity: document.getElementById("quantity").value
+    };
+
+    await fetch("https://script.google.com/macros/s/AKfycbyVo6zEJW69ak4BGt5NGRa7c_yeokC6P84vX0bglpch7Wwppqtz95G5ITpP5UPX3Ugm/exec",{
+        method:"POST",
+        body:JSON.stringify(data)
+    });
+
+    document.getElementById("msg").innerHTML =
+    "✅ Đã gửi đơn hàng";
+}
+</script>
+
+</body>
+</html>
