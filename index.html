@@ -1,81 +1,176 @@
+Để làm cho trang đặt hàng trên GitHub của bạn trông đẹp mắt, chuyên nghiệp và có phông nền ấn tượng hơn, chúng ta sẽ sử dụng giao diện HTML kết hợp với CSS hiện đại (sử dụng hiệu ứng Gradient mượt mà, khung hiệu ứng kính mờ - Glassmorphism, và font chữ tinh tế).
+
+Vì bạn đã upload lên GitHub, cách tốt nhất là thay thế hoặc cập nhật file giao diện của bạn (thường là file index.html) bằng đoạn code dưới đây.
+
+💻 Đoạn code Giao diện Đặt hàng Hiện đại
+Bạn có thể copy toàn bộ đoạn code này, lưu thành file index.html (hoặc chèn phần <style> vào file của bạn):
+
+HTML
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Shop Online</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Đặt Hàng Hiện Đại</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 1. ĐỔI PHÔNG NỀN (BACKGROUND) */
+        /* Sử dụng hệ màu Gradient chuyển sắc mượt mà, tạo cảm giác sang trọng */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #c31432, #240b36);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
 
-<style>
-body{
-    background:#000;
-    color:white;
-    font-family:Arial;
-    text-align:center;
-}
+        /* 2. GIAO DIỆN KHUNG ĐẶT HÀNG (GLASSMORPHISM) */
+        /* Hiệu ứng khung kính mờ giúp giao diện cực kỳ hiện đại */
+        .order-container {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-sizing: border-box;
+        }
 
-.container{
-    width:350px;
-    margin:50px auto;
-    border:1px solid white;
-    padding:20px;
-    border-radius:10px;
-}
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #240b36;
+            font-weight: 700;
+            font-size: 26px;
+            letter-spacing: -0.5px;
+        }
 
-input{
-    width:90%;
-    padding:10px;
-    margin:8px;
-    background:#111;
-    color:white;
-    border:1px solid #555;
-}
+        /* 3. THIẾT KẾ CÁC Ô NHẬP LIỆU (INPUT FORM) */
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-button{
-    width:95%;
-    padding:10px;
-    background:#00aa00;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-</style>
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #555;
+        }
 
+        input[type="text"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        /* Hiệu ứng đổi màu viền khi nhấn vào ô nhập */
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #c31432;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(195, 20, 50, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* 4. NÚT ĐẶT HÀNG ĐẸP VÀ HIỆU ỨNG RÊ CHUỘT (HOVER) */
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(90deg, #c31432, #a00e26);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(195, 20, 50, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(195, 20, 50, 0.4);
+            background: linear-gradient(90deg, #a00e26, #c31432);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
+    <div class="order-container">
+        <h2>📦 ĐƠN ĐẶT HÀNG</h2>
+        <form id="orderForm" onsubmit="handleSubmit(event)">
+            
+            <div class="form-group">
+                <label for="name">Họ và tên</label>
+                <input type="text" id="name" placeholder="Nguyễn Văn A" required>
+            </div>
 
-<h1>ĐẶT HÀNG</h1>
+            <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="tel" id="phone" placeholder="0901234567" required>
+            </div>
 
-<input id="name" placeholder="Tên">
+            <div class="form-group">
+                <label for="product">Chọn sản phẩm</label>
+                <select id="product" required>
+                    <option value="" disabled selected>-- Chọn sản phẩm --</option>
+                    <option value="sp1">Sản phẩm Premium A</option>
+                    <option value="sp2">Sản phẩm Standard B</option>
+                    <option value="sp3">Sản phẩm C</option>
+                </select>
+            </div>
 
-<input id="product" placeholder="Sản phẩm">
+            <div class="form-group">
+                <label for="address">Địa chỉ giao hàng</label>
+                <textarea id="address" placeholder="Số nhà, tên đường, phường/xã, quận/huyện..." required></textarea>
+            </div>
 
-<input id="quantity" type="number" placeholder="Số lượng">
+            <button type="submit" class="btn-submit">Xác Nhận Đặt Hàng</button>
+        </form>
+    </div>
 
-<button onclick="sendOrder()">Đặt Hàng</button>
+    <script>
+        // Xử lý khi bấm nút đặt hàng
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const product = document.getElementById('product').value;
+            const address = document.getElementById('address').value;
 
-<p id="msg"></p>
-
-</div>
-
-<script>
-async function sendOrder(){
-
-    const data = {
-        name: document.getElementById("name").value,
-        product: document.getElementById("product").value,
-        quantity: document.getElementById("quantity").value
-    };
-
-    await fetch("https://script.google.com/macros/s/AKfycbyVo6zEJW69ak4BGt5NGRa7c_yeokC6P84vX0bglpch7Wwppqtz95G5ITpP5UPX3Ugm/exec",{
-        method:"POST",
-        body:JSON.stringify(data)
-    });
-
-    document.getElementById("msg").innerHTML =
-    "✅ Đã gửi đơn hàng";
-}
-</script>
+            alert(`🎉 Chúc mừng ${name}! Đơn hàng của bạn đã được ghi nhận thành công.\nChúng tôi sẽ liên hệ qua SĐT ${phone} sớm nhất.`);
+            
+            // Bạn có thể tích hợp API gửi dữ liệu về Gmail/Sheets ở đây nếu cần
+            document.getElementById('orderForm').reset();
+        }
+    </script>
 
 </body>
 </html>
